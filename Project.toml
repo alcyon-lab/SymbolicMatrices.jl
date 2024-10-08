@@ -1,0 +1,7 @@
+name = "SymbolicMatrices"
+uuid = "a72259d8-4a19-4915-918d-59251ee6bdc2"
+authors = ["Alcyon Lab"]
+version = "0.1.0"
+
+[compat]
+julia = "1.2"
