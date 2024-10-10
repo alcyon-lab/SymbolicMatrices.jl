@@ -3,5 +3,8 @@ uuid = "a72259d8-4a19-4915-918d-59251ee6bdc2"
 authors = ["Alcyon Lab"]
 version = "0.1.0"
 
+[deps]
+Values = "a33b2169-df44-41c1-bcb8-32c383ca81e5"
+
 [compat]
 julia = "1.2"
