@@ -5,10 +5,10 @@ struct SymbolicMatrix
     n::Value
     cases::Dict{Constraint,Function} # Constraint => (i::Value, j::Value) -> Value
 
-    function SymbolicMatrix(m::Value, n::Value, cases::Dict{Constraint,Function})
+    function SymbolicMatrix(m::Value, n::Value, cases::Dict{<:Constraint,<:Function})
         new(m, n, cases)
     end
-    function SymbolicMatrix(m::Number, n::Number, cases::Dict{Constraint,Function})
+    function SymbolicMatrix(m::Number, n::Number, cases::Dict{<:Constraint,<:Function})
         new(Value(m), Value(n), cases)
     end
 end
@@ -22,7 +22,7 @@ function element_at(m::SymbolicMatrix, i::Int, j::Int)
     return nothing
 end
 
-function show_between(io::IO, m::SymbolicMatrix, il::Int, ih::Int, jl::Int, jh::Int)
+function show_range(io::IO, m::SymbolicMatrix, il::Int, ih::Int, jl::Int, jh::Int)
     for i in il:ih
         for j in jl:jh
             e = element_at(m, i, j)
@@ -31,6 +31,10 @@ function show_between(io::IO, m::SymbolicMatrix, il::Int, ih::Int, jl::Int, jh::
         end
         println(io)
     end
+end
+
+function show_range(m::SymbolicMatrix, il::Int, ih::Int, jl::Int, jh::Int)
+    show_range(stdout, m, il, ih, jl, jh)
 end
 
 function Base.:(+)(matrix1::SymbolicMatrix, matrix2::SymbolicMatrix)::SymbolicMatrix
